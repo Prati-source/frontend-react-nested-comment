@@ -18,7 +18,7 @@ export function PostProvider({children}){
     const {Loading, Error, Value: post}=useAsync(()=> getPostUnique(id),[id])
 
     const [comment, setComment] = useState([])
-
+   
     useEffect(() => {
     
         if(post?.comment == null) return
@@ -41,8 +41,8 @@ export function PostProvider({children}){
         return Group
     }, [comment])
 
+
     
-   
   
     function getReplies(parentId){
         return groupCommentByParentId[parentId]

@@ -9,9 +9,9 @@ export  function CommentForm({intialValue='', Loading, Error, autoFocus= false, 
 
     }
     return <form onSubmit={e => handleSubmit(e)}>
-        <div className="comment-form-row">
-            <textarea className="message-input"  autoFocus={autoFocus} value={message} onChange={(e)=>{setMessage(e.target.value)}}></textarea>
-            <button className="btn" type="Submit" disabled={Loading}>{Loading? "Loading" : "Post"}</button>
+        <div className="comment-form-row mx-3 ">
+            <textarea className="message-input dark:border-gray-800 dark:bg-gray-400 dark:text-white"  autoFocus={autoFocus} value={message} onChange={(e)=>{setMessage(e.target.value)}}></textarea>
+            <button className="btn" type="Submit" disabled={Loading}>{Loading? "Loading" : "Comment"}</button>
         </div>
         <div className="error-msg">{Error}</div>
     </form>

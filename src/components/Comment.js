@@ -6,7 +6,7 @@ import { useState } from "react"
 import { CommentForm } from "./CommentForm"
 import { useAsyncFn } from "../hooks/useAsync"
 import { createComments, deleteComments, toggleCommentLike, updateComments } from "../services/comments"
-import { useUser } from "../hooks/useUser"
+import  useUser  from "../hooks/useUser"
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
     dateStyle:"medium",
@@ -51,20 +51,21 @@ export function Comment({id,message, createdAt, user, likeCount, likedByMe}){
     
 
     return <>
-    <div className="comment">
+    <div className="dark:bg-gray-800">
+    <div className="comment dark:bg-gray-400 mt-4 border-gray-800 mb-4  ">
         <div className="header">
-            <span className="name">
+            <span className="font-medium leading-tight text-base mt-0 mb-2 text-blue-600 dark:text-gray-50">
                 {user.name}
             </span>
-            <span className="date">
+            <span className="date dark:text-white">
                 {dateFormatter.format(Date.parse(createdAt))}
             </span>
         </div>
         {isEditing ? <CommentForm autofocus intialValue={message} onSubmit={EditComment} Loading={editCommentFn.Loading} Error={editCommentFn.Error} /> :
-        <div className="message">{message}</div>
+        <div className="message dark:text-gray-50">{message}</div>
 
         }
-        <div className="footer">
+        <div className="footer dark:bg-text-100">
             <IconBtn onClick={OnToggleCommentLike} disabled={ toggleCommentLikeFn.Loading}  Icon={likedByMe? FaHeart: FaRegHeart} aria-label={likedByMe? 'Unlike': 'Like'} >
                {likeCount}
             </IconBtn>
@@ -76,16 +77,16 @@ export function Comment({id,message, createdAt, user, likeCount, likedByMe}){
         </div>
     </div>
         {isReplying && (
-            <div className="mt-1 ml-3">
+            <div className=" dark:bg-gray-800 ">
                 <CommentForm autoFocus onSubmit={ReplyComment} Loading={createCommentFn.Loading} Error={createCommentFn.Error} />
             </div>
         )}
        
         {ChildComment?.length > 0 && (
             <>
-                <div className={`nested-comments-stack ${areChildrenHidden? "hide": ""}`}>
-                        <button className="collapse-line" aria-label="Hide Replies" onClick={() => setAreChildrenHidden(true)} />
-                    <div className="nested-comments">
+                <div className={`nested-comments-stack ${areChildrenHidden? "hide": ""}`} >
+                        <button className="collapse-line " aria-label="Hide Replies" onClick={() => setAreChildrenHidden(true)} />
+                    <div className="nested-comments ">
                        
                         <CommentList comments={ChildComment} />
                     </div>
@@ -99,6 +100,6 @@ export function Comment({id,message, createdAt, user, likeCount, likedByMe}){
                 
             </>
         )
-    }
+    }</div>
     </>
 }
