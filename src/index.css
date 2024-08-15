@@ -1,10 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:  sans-serif;
   line-height: 1.4;
 }
 
@@ -89,7 +95,7 @@ button {
 
 .collapse-line:hover::before,
 .collapse-line:focus-visible::before {
-  background-color: hsl(235, 100%, 60%);
+  background-color: hsl(235, 75%, 74%);
 }
 
 .collapse-line::before {

@@ -20,14 +20,14 @@ export function Post(){
     }
 
     return <>
-    <h1>
+    <h1 className="ml-4 font-medium leading-tight text-5xl mt-0 mb-2 dark:text-white">
         {post.title}
     </h1>
-    <article>{post.body}</article>
-    <h3 className="comments-title">Comments</h3>
+    <article className=" ml-4 font-sans font-light dark:text-white text-xl mb-6">{post.body}</article>
+    <h3 className="ml-4 font-medium leading-tight text-xl mt-0 mb-2 text-white underline">Comments</h3>
     <CommentForm Loading={Loading} Error={Error} onSubmit={onCommentCreate}  />
     <section>{rootComments!= null && rootComments.length >0 && (
-        <div className="mt-4">
+        <div className="mt-4 mx-4">
             <CommentList comments={rootComments} />
         </div>
     )}</section>{}

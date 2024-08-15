@@ -3,13 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-
+import { SearchContextProvider } from './context/SearchContextProvider';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <BrowserRouter> 
-       <App />
-    </BrowserRouter>
-  
+    <div className='pt-1 bg-Sky w-full     '>
+        <SearchContextProvider>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </SearchContextProvider>
+
+    </div>
+
+
 );
 
 // If you want to start measuring performance in your app, pass a function
