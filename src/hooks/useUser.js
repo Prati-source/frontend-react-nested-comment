@@ -5,7 +5,8 @@ import Cookies from 'js-cookie';
     
     if(Cookies.get('userId'))
     {
-    return  { id: document.cookie.match(/userId=(?<id>[^;]+);?$/).groups.id }
+        console.log({name: document.cookie.match(/name=([^;]*)/)[1]})
+    return  { id: document.cookie.match(/userId=([^;]*)/)[1], name: document.cookie.match(/name=([^;]*)/)[1]}
     }
     return 
 }

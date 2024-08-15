@@ -13,8 +13,8 @@ import { useResultContext } from '../context/SearchContextProvider'
   const {searchTerm, setSearchTerm} = useResultContext();
   const [term,setTerm]= useState();
   
- const currentuser = useUser();
-  const [cookies, setCookie] = useCookies(["userId"]);
+  const currentuser = useUser();
+  const [cookies, setCookie] = useCookies(["userId","name"]);
 
  
 
@@ -27,6 +27,7 @@ import { useResultContext } from '../context/SearchContextProvider'
   }
 if(cookies.userId === undefined){
   setCookie("userId","guest")
+  setCookie("name","anonymous")
 }
   
   function checkUser(){ return cookies.userId === "guest" ?     (<span className="mr-4 "> <Button color="purple" placeholder='Search' > Get Started
@@ -45,20 +46,20 @@ if(cookies.userId === undefined){
     >
       <Dropdown.Header>
         <span className="block text-sm dark:bg-black dark:text-white">
-          Bonnie Green
+          {currentuser.name}
         </span>
         <span className="block truncate text-sm font-medium">
           name@flowbite.com
         </span>
       </Dropdown.Header>
       <Dropdown.Item>
-        Dashboard
+        <Link exact="true"  to="/expense">View Expense</Link>
       </Dropdown.Item>
       <Dropdown.Item>
       <Link exact="true" to="/postcreate">Create Post</Link>
       </Dropdown.Item>
       <Dropdown.Item>
-        Earnings
+        <Link exact="true"  to="/addexpense">Add Expense</Link>
       </Dropdown.Item>
       <Dropdown.Divider />
       <Dropdown.Item>

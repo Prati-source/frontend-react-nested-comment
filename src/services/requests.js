@@ -20,7 +20,7 @@ else{
 }
 
 export async function requests  (url, options) {
-    return api(url,options)
+    return await api(url,options)
         .then(res => res.data)
         .catch(err => Promise.reject(err))
 }

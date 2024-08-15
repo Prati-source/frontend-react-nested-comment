@@ -31,7 +31,7 @@ export default  function Login () {
 
 if(currentuser?.id !== 'guest'){
    
-    return <Navigate to="/posts" replace="true"  />;
+    return <meta http-equiv="refresh" content="5; url=/posts"></meta>
 }
 
 

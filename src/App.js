@@ -10,6 +10,8 @@ import { SearchResult } from './components/SearchResult'
 import { Footers } from './Page/Footers';
 import { Contact } from './components/Contact';
 import { PostForm } from './components/PostForm';
+import { Expense } from './components/Expense';
+import { ExpenseForm } from './components/ExpenseForm';
 
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
         <Route  path='/search' element={<SearchResult />} />
         <Route  path='/images' element={<SearchResult />} />
         <Route  path='/contact' element={<Contact />} />
+        <Route  path='/expense/' element={<Expense />} />
+        <Route  path='/addexpense/'  element={<ExpenseForm />} />
 
       </Routes></div>
       <Footers />
