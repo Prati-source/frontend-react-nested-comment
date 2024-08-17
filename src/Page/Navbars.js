@@ -1,6 +1,6 @@
 import React, {useEffect,useState} from 'react'
 import { Link } from 'react-router-dom';
-import { Avatar, Dropdown, Navbar, Button, ToggleSwitch } from 'flowbite-react';
+import {  Dropdown, Navbar, Button, ToggleSwitch } from 'flowbite-react';
 import {useCookies } from 'react-cookie';
 import  useUser  from "../hooks/useUser"
 import { useResultContext } from '../context/SearchContextProvider'
@@ -16,7 +16,11 @@ import { useResultContext } from '../context/SearchContextProvider'
   const currentuser = useUser();
   const [cookies, setCookie] = useCookies(["userId","name"]);
 
- 
+ useEffect(<script>
+  window.location.href = "/register";
+</script>
+
+  ,cookies.userId)
 
   function searchStore(){
     let t = term
