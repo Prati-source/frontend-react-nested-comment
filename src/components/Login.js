@@ -29,9 +29,9 @@ export default  function Login () {
  }
 
 
-if(currentuser?.id !== 'guest'){
-   
-    return <meta http-equiv="refresh" content="5; url=/posts"></meta>
+if(currentuser.id !== 'guest'){
+   console.log(currentuser) 
+    return <meta http-equiv="refresh" content="5; url=/posts" />
 }
 
 
