@@ -1,5 +1,5 @@
-import React, { useEffect, useState} from 'react'
-import { Link, useNavigate, Navigate, Route } from "react-router-dom"
+import React, {useState} from 'react'
+import { Link} from "react-router-dom"
 import { login } from '../services/user';
 import { useAsyncFn } from '../hooks/useAsync';
 import  useUser  from '../hooks/useUser';
@@ -11,7 +11,7 @@ export default  function Login () {
     const[username, setUsername] = useState()
     const[password, setPassword] = useState()
     const LoginUserFn = useAsyncFn(login)
-    const navi = useNavigate()
+   
     
     let currentuser = useUser();
     
@@ -29,9 +29,9 @@ export default  function Login () {
  }
 
 
-if(currentuser?.id !== 'guest'){
-   
-    return <meta http-equiv="refresh" content="5; url=/posts"></meta>
+if(currentuser.id !== 'guest'){
+   console.log(currentuser) 
+    return <meta http-equiv="refresh" content="5; url=/posts" />
 }
 
 

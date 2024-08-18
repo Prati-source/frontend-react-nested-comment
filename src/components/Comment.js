@@ -71,7 +71,7 @@ export function Comment({id,message, createdAt, user, likeCount, likedByMe}){
             </IconBtn>
             <IconBtn isActive={isReplying}  Icon={FaReply} aria-label={isReplying? 'Cancel Reply':  "Reply"} onClick={() => setIsReplying(prev => !prev)}  />
                 { (currentuser.id === user.id) && (<>
-                <IconBtn Icon={FaEdit} isActive={isEditing} aria-label={isEditing? 'Cancel Edit': 'Edit'} onClick={() => setIsEditing(prev =>!prev)} />
+                <IconBtn Icon={FaEdit} color="#3EBCC1" isActive={isEditing} aria-label={isEditing? 'Cancel Edit': 'Edit'} onClick={() => setIsEditing(prev =>!prev)} />
                 <IconBtn Icon={FaTrash} color='danger' aria-label='Delete' onClick={ DeleteComment} disabled ={deleteLocalComment.Loading}/>
                 </>)}
         </div>
