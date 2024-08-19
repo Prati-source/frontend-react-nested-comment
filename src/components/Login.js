@@ -4,7 +4,7 @@ import { login } from '../services/user';
 import { useAsyncFn } from '../hooks/useAsync';
 import  useUser  from '../hooks/useUser';
 import UseHash from '../hooks/useHash';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 
 
@@ -12,7 +12,6 @@ export default  function Login () {
     const[username, setUsername] = useState()
     const[password, setPassword] = useState()
     const LoginUserFn = useAsyncFn(login)
-    const navigate = useNavigate()
     
     let currentuser = useUser();
     
@@ -32,7 +31,7 @@ export default  function Login () {
 
 if(currentuser.id !== 'guest'){
    
-    return navigate('/posts',{replace: true})
+    return <Navigate to="/posts" />
 }
 
 
