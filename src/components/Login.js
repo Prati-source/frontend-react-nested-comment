@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
-import { Link} from "react-router-dom"
+import { Link} from "react-router-dom";
 import { login } from '../services/user';
 import { useAsyncFn } from '../hooks/useAsync';
 import  useUser  from '../hooks/useUser';
 import UseHash from '../hooks/useHash';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -11,7 +12,7 @@ export default  function Login () {
     const[username, setUsername] = useState()
     const[password, setPassword] = useState()
     const LoginUserFn = useAsyncFn(login)
-   
+    const navigate = useNavigate()
     
     let currentuser = useUser();
     
@@ -30,8 +31,8 @@ export default  function Login () {
 
 
 if(currentuser.id !== 'guest'){
-   console.log(currentuser) 
-    return <meta http-equiv="refresh" content="5; url=/posts" />
+   
+    return navigate('/posts',{replace: true})
 }
 
 
@@ -39,7 +40,7 @@ return (
     <div>
     
 
-                    <section className="h-screen bg-Login-cloud max-w-full bg-cover ">
+        <section className="h-screen bg-Login-cloud max-w-full bg-cover ">
             <div className="px-6 h-full text-gray-800">
                 <div
                 className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6"
@@ -167,8 +168,8 @@ return (
                 </div>
                 </div>
             </div>
-                    </section>
-                    </div>
+        </section>
+    </div>
   );
   
 }

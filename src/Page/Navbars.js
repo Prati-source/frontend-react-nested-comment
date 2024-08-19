@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom';
 import {  Dropdown, Navbar, Button, ToggleSwitch } from 'flowbite-react';
 import {useCookies } from 'react-cookie';
@@ -13,10 +13,13 @@ import { useResultContext } from '../context/SearchContextProvider'
   const {searchTerm, setSearchTerm} = useResultContext();
   const [term,setTerm]= useState();
   
-  const currentuser = useUser();
+  let currentuser = useUser();
   const [cookies, setCookie] = useCookies(["userId","name"]);
-
-
+  
+if(cookies.userId||cookies.name === undefined){
+  setCookie("userId","guest")
+  setCookie("name","anonymous")
+}
 
   function searchStore(){
     let t = term
@@ -26,12 +29,9 @@ import { useResultContext } from '../context/SearchContextProvider'
   
   }
 
-if(cookies.userId !== "guest"){
-  <Navbars />
-}
 
 
-  function checkUser(){ return cookies.userId === "guest" ?     (<span className="mr-4 "> <Button color="purple" placeholder='Search' > Get Started
+  function checkUser(){ return currentuser.id === "guest" ?     (<span className="mr-4 "> <Button color="purple" placeholder='Search' > Get Started
  
 </Button></span>) : (userPresent())    } 
 
@@ -64,9 +64,9 @@ if(cookies.userId !== "guest"){
       </Dropdown.Item>
       <Dropdown.Divider />
       <Dropdown.Item>
-        <div onClick={() => {setCookie("userId", "guest", {
-      path: "/"
-    })}} >Sign out</div>
+        <div onClick={() => {
+          setCookie("userId", "guest")
+          setCookie("name","anonymous")}} >Sign out</div>
         
       </Dropdown.Item>
     </Dropdown></div>
