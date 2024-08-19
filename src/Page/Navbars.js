@@ -26,9 +26,7 @@ import { useResultContext } from '../context/SearchContextProvider'
   
   }
 
-if(cookies.userId !== "guest"){
-  <Navbars />
-}
+
 
 
   function checkUser(){ return cookies.userId === "guest" ?     (<span className="mr-4 "> <Button color="purple" placeholder='Search' > Get Started
