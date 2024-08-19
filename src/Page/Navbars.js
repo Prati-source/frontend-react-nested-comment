@@ -12,9 +12,16 @@ import { useResultContext } from '../context/SearchContextProvider'
  export function Navbars({darkTheme, setDarkTheme}) {
   const {searchTerm, setSearchTerm} = useResultContext();
   const [term,setTerm]= useState();
-  
+  let webroute
+  if(process.env.REACT_APP_STAGE === "development"){
+    webroute = process.env.REACT_APP_DEV_URL
+  }else{
+    webroute= process.env.REACT_APP_SERVICE_URL
+  }
   let currentuser = useUser();
-  const [cookies, setCookie] = useCookies("userId","name");
+  const [cookies, setCookie] = useCookies("userId","name",{
+    domain:webroute
+  });
   if(cookies.userId === undefined || cookies.name === undefined){
     setCookie("userId","guest")
     setCookie("name","anonymous")
@@ -36,7 +43,7 @@ if(cookies.userId !== "guest" ){
 }
 
 
-  function checkUser(){ return currentuser.id === "guest" ?     (<span className="mr-4 "> <Button color="purple" placeholder='Search' > Get Started
+  const checkUser =() =>{ return currentuser.id === "guest" ?     (<span className="mr-4 "> <Button color="purple" placeholder='Search' > Get Started
  
 </Button></span>) : (userPresent())    } 
 
