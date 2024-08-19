@@ -31,6 +31,7 @@ if(cookies.userId||cookies.name === undefined){
 
 
 
+
   function checkUser(){ return currentuser.id === "guest" ?     (<span className="mr-4 "> <Button color="purple" placeholder='Search' > Get Started
  
 </Button></span>) : (userPresent())    } 
