@@ -14,8 +14,12 @@ import { useResultContext } from '../context/SearchContextProvider'
   const [term,setTerm]= useState();
   
   let currentuser = useUser();
-  const [cookies, setCookie] = useCookies(["userId","name"]);
-  
+  const [cookies, setCookie] = useCookies("userId","name");
+  if(cookies.userId === undefined || cookies.name === undefined){
+    setCookie("userId","guest")
+    setCookie("name","anonymous")
+    
+  }
 
   function searchStore(){
     let t = term
@@ -25,7 +29,9 @@ import { useResultContext } from '../context/SearchContextProvider'
   
   }
   let Name
-if(currentuser.id !== undefined||"guest" ){
+if(cookies.userId !== "guest" ){
+  setCookie("userId",currentuser.id)
+  setCookie("name",currentuser.name)
   Name= currentuser.name
 }
 
