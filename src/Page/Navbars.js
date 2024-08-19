@@ -16,10 +16,6 @@ import { useResultContext } from '../context/SearchContextProvider'
   let currentuser = useUser();
   const [cookies, setCookie] = useCookies(["userId","name"]);
   
-if(cookies.userId||cookies.name === undefined){
-  setCookie("userId","guest")
-  setCookie("name","anonymous")
-}
 
   function searchStore(){
     let t = term
@@ -28,8 +24,10 @@ if(cookies.userId||cookies.name === undefined){
     console.log(searchTerm)
   
   }
-
-
+  let Name
+if(currentuser.id !== undefined||"guest" ){
+  Name= currentuser.name
+}
 
 
   function checkUser(){ return currentuser.id === "guest" ?     (<span className="mr-4 "> <Button color="purple" placeholder='Search' > Get Started
@@ -48,7 +46,7 @@ if(cookies.userId||cookies.name === undefined){
     >
       <Dropdown.Header>
         <span className="block text-sm dark:bg-black dark:text-white">
-          {currentuser.name}
+         {Name}
         </span>
         <span className="block truncate text-sm font-medium">
           name@flowbite.com
