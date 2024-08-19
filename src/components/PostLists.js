@@ -3,10 +3,11 @@
 import { Link } from 'react-router-dom';
 import { useAsync } from '../hooks/useAsync';
 import { getPost  } from '../services/posts'
+import useUser from '../hooks/useUser';
 
 export function PostList() {
   const { Loading, Error, Value: posts} = useAsync(getPost)
-   
+
   if(Loading) return <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
   <div class="animate-pulse flex space-x-4">
     <div class="rounded-full bg-blue-400 h-12 w-12"></div>

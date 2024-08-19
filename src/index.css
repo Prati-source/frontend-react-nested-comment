@@ -147,6 +147,10 @@ button {
   --color: hsl(var(--hue), 100%, 74%);
 }
 
+.icon-btn.green{
+  --hue: 270;
+}
+
 .icon-btn-active,
 .icon-btn.danger {
   --hue: 0;
@@ -216,13 +220,13 @@ button {
     transform: translate(0, 0);
   }
   25% {
-    transform: translate(10px, 10px);
+    transform: translate(40px, 40px);
   }
   50% {
-    transform: translate(-10px, -10px);
+    transform: translate(-40px, -40px);
   }
   75% {
-    transform: translate(5px, -5px);
+    transform: translate(40px, -40px);
   }
   100% {
     transform: translate(0, 0);
