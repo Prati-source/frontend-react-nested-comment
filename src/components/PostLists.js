@@ -8,7 +8,7 @@ import useUser from '../hooks/useUser';
 export function PostList() {
   const { Loading, Error, Value: posts} = useAsync(getPost)
 
-  if(Loading) return <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+  if(Loading) return <div class="border border-blue-300 shadow ml-2 rounded-md p-4 max-w-sm w-full mx-auto">
   <div class="animate-pulse flex space-x-4">
     <div class="rounded-full bg-blue-400 h-12 w-12"></div>
     <div class="flex-1 space-y-4 py-1">
@@ -22,11 +22,23 @@ export function PostList() {
 </div>
   if(Error) return <h1 className='error-msg'>{Error}</h1>
     
-  return posts.map(post => {
-      return (<div className=''><Link key={post.id} to={'/posts/'+post.id}><div className='dark:bg-gray-500 dark:text-white  mx-5 py-1    md:min-h-full md:h-24  my-3 font-light  bg-gray-50 border-2 dark:border-gray-600 dark:hover:bg-gray-600 text-blue-800 px-2 hover:bg-blue-200 hover:text-slate-200 rounded-2xl font-mono text-xl  '>
-      {post.title}</div></Link></div>
-      )
-    })
-  
+  return <div className="flex flex-col justify-center  h-screen bg-muted place-content-start dark:bg-background dark:text-white mt-10 mb-10 ">
+                  <div className="w-full max-w-md p-6 dark:bg-card dark:text-card-foreground">
+                    {posts.map(post => {
+                    return <div className="grid gap-2 hover:bg-slate-200 bg-slate-100 dark:hover:text-slate-400 dark:bg-slate-600 rounded-lg mt-2 mb-2 "  >
+                        <Link key={post.id} to={'/posts/'+post.id}
+                          className="flex items-center justify-between rounded-md bg-background dark:bg-card dark:hover:bg-muted hover:bg-muted px-4 py-3">
+                          <div className="text-sm font-medium">{post.title}</div>
+                          <svg className="h-4 w-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" width="24"height="24" viewBox="0 0 24 24"  fill="none"   stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" >
+                            <path d="m9 18 6-6-6-6" />
+                            </svg>
+                        </Link> 
+                      </div>}
+                 
+      
+  )} </div>
+  </div>
 }
+
+
                                                                                                               

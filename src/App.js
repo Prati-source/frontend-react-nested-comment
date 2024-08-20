@@ -16,13 +16,13 @@ import { ExpenseForm } from './components/ExpenseForm';
 function App() {
 
  const [darkTheme, setDarkTheme] = useState(false)
- 
+ const [sign,setSign] = useState(false)
  
   return (
     <div className={darkTheme?'dark': ''}>
    
     <div className='container bg-white -mx-3 rounded dark:bg-gray-800 ' >
-      <Navbars darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
+      <Navbars darkTheme={darkTheme} setDarkTheme={setDarkTheme} setSign={setSign} sign={sign} />
       <div  className='' ><Routes >    
         <Route  path='/posts' element={<PostList />} />
         <Route  path='/posts/:id' element={<PostProvider><Post /></PostProvider>} />

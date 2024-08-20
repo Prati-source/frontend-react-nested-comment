@@ -12,34 +12,40 @@ import { useResultContext } from '../context/SearchContextProvider'
  export function Navbars({darkTheme, setDarkTheme}) {
   const {searchTerm, setSearchTerm} = useResultContext();
   const [term,setTerm]= useState();
+  const[sign,setSign] = useState(false)
   let webroute
+  let Name = 'none'
   if(process.env.REACT_APP_STAGE === "development"){
     webroute = process.env.REACT_APP_DEV_URL
   }else{
     webroute= process.env.REACT_APP_SERVICE_URL
   }
-  let currentuser = useUser();
-  const [cookies, setCookie] = useCookies("userId","name",{
-    domain:webroute
+ 
+  const [cookies, setCookie] = useCookies(["userId","name"],{
+    maxAge:3600,
+    path:'/'
   });
-  if(cookies.userId === undefined || cookies.name === undefined){
-    setCookie("userId","guest")
-    setCookie("name","anonymous")
-    
-  }
-
-  function searchStore(){
+  
+  function signout(){
+  setCookie("userId", "guest")
+  setCookie("name","anonymous")
+  window.location.reload()
+  return 
+} 
+let currentuser = useUser();
+  
+ function searchStore(){
     let t = term
     setSearchTerm(t);
    
     console.log(searchTerm)
   
   }
-  let Name
-if(cookies.userId !== "guest" ){
-  setCookie("userId",currentuser.id)
-  setCookie("name",currentuser.name)
-  Name= currentuser.name
+
+if(cookies.userId === undefined ){
+  setCookie("userId","guest")
+  setCookie("name","anonymous")
+  
 }
 
 
@@ -59,7 +65,7 @@ if(cookies.userId !== "guest" ){
     >
       <Dropdown.Header>
         <span className="block text-sm dark:bg-black dark:text-white">
-         {Name}
+         {currentuser.name}
         </span>
         <span className="block truncate text-sm font-medium">
           name@flowbite.com
