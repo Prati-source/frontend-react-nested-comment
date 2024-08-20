@@ -1,7 +1,7 @@
 
 import Cookies from 'js-cookie';
 
- export function useuser(){
+ export function useUser(){
     
     if(Cookies.get('userId'))
     {

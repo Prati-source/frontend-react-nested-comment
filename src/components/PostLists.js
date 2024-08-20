@@ -3,7 +3,7 @@
 import { Link } from 'react-router-dom';
 import { useAsync } from '../hooks/useAsync';
 import { getPost  } from '../services/posts'
-import useUser from '../hooks/useuser';
+import useUser from '../hooks/useUser';
 
 export function PostList() {
   const { Loading, Error, Value: posts} = useAsync(getPost)

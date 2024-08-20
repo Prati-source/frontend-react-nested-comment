@@ -2,24 +2,23 @@ import React, {useState} from 'react'
 import { Link} from "react-router-dom";
 import { login } from '../services/user';
 import { useAsyncFn } from '../hooks/useAsync';
-import  {useuser}  from '../hooks/useuser';
 import UseHash from '../hooks/useHash';
-import { Navigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
-
+import { useCookies} from 'react-cookie';
+import Cookies from 'js-cookie';
 
 
 export default  function Login () {
     const[username, setUsername] = useState()
     const[password, setPassword] = useState()
     const LoginUserFn = useAsyncFn(login)
-    const [cookies,setCookie] = useCookies(['userId','name'],{
-        maxAge: 3600,
-        domain: 'https://backend-nested-comment.onrender.com',
-        path: '/'
-    })
     let currentuser
-    
+    const[cookie,setCookie]= useCookies()
+    let webroute
+    if(process.env.REACT_APP_STAGE === "development"){
+      webroute = process.env.REACT_APP_DEV_URL
+    }else{
+      webroute= process.env.REACT_APP_SERVICE_URL
+    }
  
  const handleOnSubmit = (e) =>{
     e.preventDefault();
@@ -31,16 +30,20 @@ export default  function Login () {
     
         alert(res.error)
         }
-        if(cookies.userId !== 'guest'){
-            currentuser= useuser()
-            setCookie('userId',currentuser.id)
-            setCookie('name',currentuser.name)
-            return <Navigate to="/posts" replace='true' />
+        currentuser = Cookies.get()
+        
+        if(currentuser.userId !== 'guest'){
+            
+            setCookie('userId',currentuser.userId,{path:'/',maxAge:3600, domain: webroute})
+            setCookie('name',currentuser.name,{path:'/',maxAge:3600, domain: webroute})
+           
         } 
-
+        console.log(currentuser)
+        window.location.href = '/posts'
  } )
   }
 
+  
 
 
 
@@ -60,7 +63,6 @@ return (
                     <img
                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
                     className="w-full"
-                    alt="Sample image"
                     />
                 </div>
                 <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
