@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
 import {  Dropdown, Navbar, Button, ToggleSwitch } from 'flowbite-react';
 import {useCookies } from 'react-cookie';
-import  {useuser}  from "../hooks/useuser"
 import { useResultContext } from '../context/SearchContextProvider'
 
 
@@ -12,9 +11,7 @@ import { useResultContext } from '../context/SearchContextProvider'
  export function Navbars({darkTheme, setDarkTheme}) {
   const {searchTerm, setSearchTerm} = useResultContext();
   const [term,setTerm]= useState();
-  const[sign,setSign] = useState(false)
   let webroute
-  let Name = 'none'
   if(process.env.REACT_APP_STAGE === "development"){
     webroute = process.env.REACT_APP_DEV_URL
   }else{
@@ -25,17 +22,11 @@ import { useResultContext } from '../context/SearchContextProvider'
     name: "anonymous",
     maxAge:3600,
     path:'/',
-    domain: 'https://backend-nested-comment.onrender.com'
+    domain: webroute
   });
-  
-  function signout(){
-  setCookie("userId", "guest")
-  setCookie("name","anonymous")
-  window.location.reload()
-  return 
-} 
-let currentuser = useuser();
-  
+
+
+
  function searchStore(){
     let t = term
     setSearchTerm(t);

@@ -6,7 +6,7 @@ import { useState } from "react"
 import { CommentForm } from "./CommentForm"
 import { useAsyncFn } from "../hooks/useAsync"
 import { createComments, deleteComments, toggleCommentLike, updateComments } from "../services/comments"
-import  {useuser}  from "../hooks/useuser"
+import  {useUser}  from "../hooks/useUser"
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
     dateStyle:"medium",
@@ -19,7 +19,7 @@ export function Comment({id,message, createdAt, user, likeCount, likedByMe}){
     const [isReplying, setIsReplying] = useState(false)
     const [isEditing, setIsEditing]  = useState(false)
     const createCommentFn = useAsyncFn(createComments)
-    const currentuser = useuser();
+    const currentuser = useUser();
     function ReplyComment(message){
         return createCommentFn.execute({ postId: post.id, message, parentId: id}).then(comment => {
             setIsReplying(false)
