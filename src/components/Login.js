@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Link} from "react-router-dom";
 import { login } from '../services/user';
 import { useAsyncFn } from '../hooks/useAsync';
-import  useUser  from '../hooks/useUser';
+import  {useuser}  from '../hooks/useuser';
 import UseHash from '../hooks/useHash';
 import { Navigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
@@ -18,7 +18,7 @@ export default  function Login () {
         domain: 'https://backend-nested-comment.onrender.com',
         path: '/'
     })
-    let currentuser = useUser();
+    let currentuser
     
  
  const handleOnSubmit = (e) =>{
@@ -31,15 +31,18 @@ export default  function Login () {
     
         alert(res.error)
         }
-     
+        if(cookies.userId !== 'guest'){
+            currentuser= useuser()
+            setCookie('userId',currentuser.id)
+            setCookie('name',currentuser.name)
+            return <Navigate to="/posts" replace='true' />
+        } 
+
  } )
- }
+  }
 
 
-if(currentuser.id !== 'guest'){
-   
-    return <Navigate to="/posts" />
-}
+
 
 
 return (

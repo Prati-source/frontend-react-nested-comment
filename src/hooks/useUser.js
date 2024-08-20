@@ -1,7 +1,7 @@
 
 import Cookies from 'js-cookie';
 
- function useUser(){
+ export function useuser(){
     
     if(Cookies.get('userId'))
     {
@@ -13,4 +13,3 @@ import Cookies from 'js-cookie';
 
 
 
-export default useUser

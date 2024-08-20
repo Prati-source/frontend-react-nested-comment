@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom';
 import {  Dropdown, Navbar, Button, ToggleSwitch } from 'flowbite-react';
 import {useCookies } from 'react-cookie';
-import  useUser  from "../hooks/useUser"
+import  {useuser}  from "../hooks/useuser"
 import { useResultContext } from '../context/SearchContextProvider'
 
 
@@ -20,8 +20,9 @@ import { useResultContext } from '../context/SearchContextProvider'
   }else{
     webroute= process.env.REACT_APP_SERVICE_URL
   }
- 
   const [cookies, setCookie] = useCookies(["userId","name"],{
+    userId: "guest",
+    name: "anonymous",
     maxAge:3600,
     path:'/',
     domain: 'https://backend-nested-comment.onrender.com'
@@ -33,7 +34,7 @@ import { useResultContext } from '../context/SearchContextProvider'
   window.location.reload()
   return 
 } 
-let currentuser = useUser();
+let currentuser = useuser();
   
  function searchStore(){
     let t = term
@@ -46,7 +47,7 @@ let currentuser = useUser();
 
 
 
-  const checkUser =() =>{ return currentuser.id === "guest" ?     (<span className="mr-4 "> <Button color="purple" placeholder='Search' > Get Started
+  const checkUser =() =>{ return cookies.userId === "guest" ?     (<span className="mr-4 "> <Button color="purple" placeholder='Search' > Get Started
  
 </Button></span>) : (userPresent())    } 
 
