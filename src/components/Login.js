@@ -13,7 +13,9 @@ export default  function Login () {
     const[username, setUsername] = useState()
     const[password, setPassword] = useState()
     const LoginUserFn = useAsyncFn(login)
-    
+    const [cookies,setCookie] = useCookies(['userId','name'],{
+        maxAge: 3600
+    })
     let currentuser = useUser();
     
  
@@ -22,11 +24,12 @@ export default  function Login () {
     let pass=UseHash(password);
     setPassword(pass);
    
-    LoginUserFn.execute({username, password}).then(res =>{ if(res.error) {
+    LoginUserFn.execute({username, password}).then(res =>{ 
+        if(res.error) {
     
-        alert(res.error)}
+        alert(res.error)
+        }
      
-    
  } )
  }
 
