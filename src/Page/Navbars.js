@@ -43,11 +43,7 @@ let currentuser = useUser();
   
   }
 
-if(cookies.userId === undefined ){
-  setCookie("userId","guest")
-  setCookie("name","anonymous")
-  
-}
+
 
 
   const checkUser =() =>{ return currentuser.id === "guest" ?     (<span className="mr-4 "> <Button color="purple" placeholder='Search' > Get Started
