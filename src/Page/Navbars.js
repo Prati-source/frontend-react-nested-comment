@@ -23,7 +23,8 @@ import { useResultContext } from '../context/SearchContextProvider'
  
   const [cookies, setCookie] = useCookies(["userId","name"],{
     maxAge:3600,
-    path:'/'
+    path:'/',
+    domain: 'https://backend-nested-comment.onrender.com'
   });
   
   function signout(){
