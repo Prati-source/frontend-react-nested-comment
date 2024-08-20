@@ -62,7 +62,7 @@ let currentuser = useUser();
     >
       <Dropdown.Header>
         <span className="block text-sm dark:bg-black dark:text-white">
-         {currentuser.name}
+        {cookies.name}
         </span>
         <span className="block truncate text-sm font-medium">
           name@flowbite.com
