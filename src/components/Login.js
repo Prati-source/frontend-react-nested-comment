@@ -14,7 +14,9 @@ export default  function Login () {
     const[password, setPassword] = useState()
     const LoginUserFn = useAsyncFn(login)
     const [cookies,setCookie] = useCookies(['userId','name'],{
-        maxAge: 3600
+        maxAge: 3600,
+        domain: 'https://backend-nested-comment.onrender.com',
+        path: '/'
     })
     let currentuser = useUser();
     
