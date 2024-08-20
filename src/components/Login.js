@@ -13,12 +13,6 @@ export default  function Login () {
     const LoginUserFn = useAsyncFn(login)
     let currentuser
     const[cookie,setCookie]= useCookies()
-    let webroute
-    if(process.env.REACT_APP_STAGE === "development"){
-      webroute = process.env.REACT_APP_DEV_URL
-    }else{
-      webroute= process.env.REACT_APP_SERVICE_URL
-    }
  
  const handleOnSubmit = (e) =>{
     e.preventDefault();
@@ -34,8 +28,8 @@ export default  function Login () {
         
         if(currentuser.userId !== 'guest'){
             
-            setCookie('userId',currentuser.userId,{path:'/',maxAge:3600, domain: webroute})
-            setCookie('name',currentuser.name,{path:'/',maxAge:3600, domain: webroute})
+            setCookie('userId',currentuser.userId,{path:'/',maxAge:3600})
+            setCookie('name',currentuser.name,{path:'/',maxAge:3600})
            
         } 
         console.log(currentuser)
