@@ -11,18 +11,11 @@ import { useResultContext } from '../context/SearchContextProvider'
  export function Navbars({darkTheme, setDarkTheme}) {
   const {searchTerm, setSearchTerm} = useResultContext();
   const [term,setTerm]= useState();
-  let webroute
-  if(process.env.REACT_APP_STAGE === "development"){
-    webroute = process.env.REACT_APP_DEV_URL
-  }else{
-    webroute= process.env.REACT_APP_SERVICE_URL
-  }
   const [cookies, setCookie] = useCookies(["userId","name"],{
     userId: "guest",
     name: "anonymous",
     maxAge:3600,
-    path:'/',
-    domain: webroute
+    path:'/'
   });
 
 
