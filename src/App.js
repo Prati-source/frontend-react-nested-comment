@@ -12,7 +12,7 @@ import { Contact } from './components/Contact';
 import { PostForm } from './components/PostForm';
 import { Expense } from './components/Expense';
 import { ExpenseForm } from './components/ExpenseForm';
-
+import { Home } from './components/Home';
 function App() {
 
  const [darkTheme, setDarkTheme] = useState(false)
@@ -34,7 +34,7 @@ function App() {
         <Route  path='/contact' element={<Contact />} />
         <Route  path='/expense/' element={<Expense />} />
         <Route  path='/addexpense/'  element={<ExpenseForm />} />
-
+        <Route  path='/home' element={<Home />} />
       </Routes></div>
       <Footers />
     </div> </div>

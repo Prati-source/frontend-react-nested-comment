@@ -15,7 +15,8 @@ import { useResultContext } from '../context/SearchContextProvider'
     id:"guest",
     name:"anonymous",
     maxAge:3600,
-    path:'/'
+    path:'/',
+    secure:true
   });
 
 
@@ -96,12 +97,8 @@ import { useResultContext } from '../context/SearchContextProvider'
       <Navbar.Toggle />
     </div >
     <Navbar.Collapse>
-      <Navbar.Link
-        href="/navbars"
-        active={true}
-        
-      >
-        Home
+      <Navbar.Link>
+        <Link exact='true' to='/home'>  Home</Link>
       </Navbar.Link>
       <Navbar.Link >
       <Link exact="true" to="/posts">  Posts</Link>
