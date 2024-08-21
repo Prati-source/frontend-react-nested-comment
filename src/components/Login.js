@@ -24,16 +24,16 @@ export default  function Login () {
     
         alert(res.error)
         }
-        currentuser = Cookies.get({domain:  'https://backend-nested-comment.onrender.com/'})
+        currentuser = Cookies.get({domain:  'backend-nested-comment.onrender.com/'})
         
-        if(currentuser.userId !== 'guest'){
+        
             
-            setCookie('userId',currentuser.userId,{path:'/',maxAge:3600})
-            setCookie('name',currentuser.name,{path:'/',maxAge:3600})
+        setCookie('userId',currentuser.userId,{path:'/',maxAge:3600})
+        setCookie('name',currentuser.name,{path:'/',maxAge:3600})
            
-        } 
+        
         console.log(currentuser)
-        window.location.href = '/posts'
+      
  } )
   }
 
