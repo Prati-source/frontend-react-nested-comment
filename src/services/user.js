@@ -16,3 +16,7 @@ export function login ({username, password}){
         data: {username, password}
     })
 }
+
+export function homescreen (){
+    return requests('home')
+}

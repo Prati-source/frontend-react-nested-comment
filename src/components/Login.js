@@ -25,9 +25,10 @@ export default  function Login () {
     
         alert(res.error)
         }
+        setTimeout(1000)
         console.log(Cookies.get())
-        cuser=Cookies.get('userId',{path:'/login' ,domain:"backend-nested-comment.onrender.com"})
-        cname=Cookies.get('name',{path:'/login',domain:"backend-nested-comment.onrender.com"})
+        cuser=Cookies.get('userId',{path:'/' ,domain:"backend-nested-comment.onrender.com"})
+        cname=Cookies.get('name',{path:'/',domain:"backend-nested-comment.onrender.com"})
         
             
         setCookie('userId',cuser,{path:'/',maxAge:3600})
