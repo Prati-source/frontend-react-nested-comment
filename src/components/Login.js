@@ -24,8 +24,8 @@ export default  function Login () {
     
         alert(res.error)
         }
-        currentuser = Cookies.get({domain:  'backend-nested-comment.onrender.com/'})
-        
+        currentuser.userId = Cookies.get('userId',{domain: 'backend-nested-comment.onrender.com'})
+        currentuser.name = Cookies.get('name',{domain: 'backend-nested-comment.onrender.com'})
         
             
         setCookie('userId',currentuser.userId,{path:'/',maxAge:3600})

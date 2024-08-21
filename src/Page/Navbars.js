@@ -12,7 +12,7 @@ import { useResultContext } from '../context/SearchContextProvider'
   const {searchTerm, setSearchTerm} = useResultContext();
   const [term,setTerm]= useState();
   const [cookies, setCookie] = useCookies(["userId","name"],{
-    userId:"guest",
+    id:"guest",
     name:"anonymous",
     maxAge:3600,
     path:'/'
@@ -47,7 +47,7 @@ import { useResultContext } from '../context/SearchContextProvider'
     >
       <Dropdown.Header>
         <span className="block text-sm dark:bg-black dark:text-white">
-        {cookies.name}
+        {cookies.NM}
         </span>
         <span className="block truncate text-sm font-medium">
           name@flowbite.com
