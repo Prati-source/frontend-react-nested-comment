@@ -12,6 +12,8 @@ import { useResultContext } from '../context/SearchContextProvider'
   const {searchTerm, setSearchTerm} = useResultContext();
   const [term,setTerm]= useState();
   const [cookies, setCookie] = useCookies(["userId","name"],{
+    userId:"guest",
+    name:"anonymous",
     maxAge:3600,
     path:'/'
   });
