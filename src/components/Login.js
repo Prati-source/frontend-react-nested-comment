@@ -24,7 +24,7 @@ export default  function Login () {
     
         alert(res.error)
         }
-        currentuser = Cookies.get()
+        currentuser = Cookies.get({domain:  'https://backend-nested-comment.onrender.com/'})
         
         if(currentuser.userId !== 'guest'){
             
