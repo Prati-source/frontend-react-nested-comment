@@ -25,6 +25,7 @@ export default  function Login () {
     
         alert(res.error)
         }
+        console.log(Cookies.get())
         cuser=Cookies.get('userId',{path:'/login' ,domain:"backend-nested-comment.onrender.com"})
         cname=Cookies.get('name',{path:'/login',domain:"backend-nested-comment.onrender.com"})
         
