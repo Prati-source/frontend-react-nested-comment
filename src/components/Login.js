@@ -25,8 +25,8 @@ export default  function Login () {
     
         alert(res.error)
         }
-        cuser=Cookies.get('userId',{domain:"backend-nested-comment.onrender.com"})
-        cname=Cookies.get('name',{domain:"backend-nested-comment.onrender.com"})
+        cuser=Cookies.get('userId',{path:'/login'})
+        cname=Cookies.get('name',{path:'/login'})
         
             
         setCookie('userId',cuser,{path:'/',maxAge:3600})
