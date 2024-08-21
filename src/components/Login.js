@@ -11,7 +11,8 @@ export default  function Login () {
     const[username, setUsername] = useState()
     const[password, setPassword] = useState()
     const LoginUserFn = useAsyncFn(login)
-    let currentuser
+    const [cuser,setCuser]= useState()
+    const [cname,setCname] = useState()
     const[cookie,setCookie]= useCookies()
  
  const handleOnSubmit = (e) =>{
@@ -24,15 +25,15 @@ export default  function Login () {
     
         alert(res.error)
         }
-        currentuser.userId = Cookies.get('userId',{domain: 'backend-nested-comment.onrender.com'})
-        currentuser.name = Cookies.get('name',{domain: 'backend-nested-comment.onrender.com'})
+        setCuser(Cookies.get('userId',{domain: 'backend-nested-comment.onrender.com'}))
+        setCname(Cookies.get('name',{domain: 'backend-nested-comment.onrender.com'}))
         
             
-        setCookie('userId',currentuser.userId,{path:'/',maxAge:3600})
-        setCookie('name',currentuser.name,{path:'/',maxAge:3600})
+        setCookie('userId',cuser,{path:'/',maxAge:3600})
+        setCookie('name',cname,{path:'/',maxAge:3600})
            
         
-        console.log(currentuser)
+        console.log({cname,cuser})
       
  } )
   }
