@@ -10,9 +10,9 @@ export function getPostUnique(post){
     return requests(`/posts/`+post.id)
 }
 
-export function createPost({postbody,title}){
+export function createPost({postbody,title,tn}){
     return requests(`/postcreate`,{
         method:"POST",
-        data:{postbody,title}
+        data:{postbody,title,tn}
     })
 }

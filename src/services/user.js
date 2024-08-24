@@ -20,3 +20,7 @@ export function login ({username, password}){
 export function homescreen (){
     return requests('home')
 }
+
+export function logout(){
+    return  requests('/logout')
+}
