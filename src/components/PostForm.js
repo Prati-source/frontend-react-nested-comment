@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useAsyncFn } from "../hooks/useAsync"
 import { createPost } from "../services/posts"
 import { Navigate } from "react-router-dom"
-
+import Cookies from 'js-cookie'
 export  function PostForm() {
     
     const [title, setTitle] = useState()
@@ -12,7 +12,8 @@ export  function PostForm() {
     
     function  handleSubmit (e){
         e.preventDefault();
-        return createPostFn({title,postbody}).then(<Navigate replace="true" to="/posts" />)
+        let tn = Cookies.get('token')
+        return createPostFn({title,postbody,tn}).then(<Navigate replace="true" to="/posts" />)
         
 
     }

@@ -28,7 +28,7 @@ function App() {
         <Route  path='/posts/:id' element={<PostProvider><Post /></PostProvider>} />
         <Route  path='/postcreate' element={<PostForm />} />
         <Route  path='/register' element={<Register />} />
-        <Route  path='/login' element={<Login />} />
+        <Route  path='/login' element={<Login setSign={setSign} sign={sign} />} />
         <Route  path='/search' element={<SearchResult />} />
         <Route  path='/images' element={<SearchResult />} />
         <Route  path='/contact' element={<Contact />} />

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Link} from "react-router-dom";
+import { Link,Navigate} from "react-router-dom";
 import { login } from '../services/user';
 import { useAsyncFn } from '../hooks/useAsync';
 import UseHash from '../hooks/useHash';
@@ -7,13 +7,10 @@ import { useCookies} from 'react-cookie';
 import Cookies from 'js-cookie';
 
 
-export default  function Login () {
+export default  function Login ({sign,setSign}) {
     const[username, setUsername] = useState()
     const[password, setPassword] = useState()
     const LoginUserFn = useAsyncFn(login)
-    let cname
-    let cuser
-    const[cookie,setCookie]= useCookies()
  
  const handleOnSubmit = (e) =>{
     e.preventDefault();
@@ -25,22 +22,17 @@ export default  function Login () {
     
         alert(res.error)
         }
-        setTimeout(1000)
-        console.log(Cookies.get())
-        cuser=Cookies.get('userId',{path:'/' ,domain:"backend-nested-comment.onrender.com"})
-        cname=Cookies.get('name',{path:'/',domain:"backend-nested-comment.onrender.com"})
-        
-            
-        setCookie('userId',cuser,{path:'/',maxAge:3600})
-        setCookie('name',cname,{path:'/',maxAge:3600})
-           
-        
-        console.log({cuser,cname})
+        if(res.signed){
+            setSign(true)
+        }
+       
       
  } )
   }
 
-  
+if(Cookies.get('token') !== undefined){
+   return <Navigate to="/posts" replace={true} />
+}
 
 
 

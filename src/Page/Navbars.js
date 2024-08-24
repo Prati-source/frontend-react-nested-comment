@@ -3,21 +3,17 @@ import { Link } from 'react-router-dom';
 import {  Dropdown, Navbar, Button, ToggleSwitch } from 'flowbite-react';
 import {useCookies } from 'react-cookie';
 import { useResultContext } from '../context/SearchContextProvider'
+import Cookies from "js-cookie"
+import { useAsyncFn } from '../hooks/useAsync';
+import { logout } from '../services/user';
 
 
 
-
-
- export function Navbars({darkTheme, setDarkTheme}) {
+ export function Navbars({darkTheme, setDarkTheme,sign, setSign}) {
   const {searchTerm, setSearchTerm} = useResultContext();
   const [term,setTerm]= useState();
-  const [cookies, setCookie] = useCookies(["userId","name"],{
-    id:"guest",
-    name:"anonymous",
-    maxAge:3600,
-    path:'/',
-    secure:true
-  });
+
+  const LogoutFn = useAsyncFn(logout)
 
 
 
@@ -28,13 +24,16 @@ import { useResultContext } from '../context/SearchContextProvider'
     console.log(searchTerm)
   
   }
-
-
-
-
-  const checkUser =() =>{ return cookies.userId === "guest" ?     (<span className="mr-4 "> <Button color="purple" placeholder='Search' > Get Started
+  const handleLogout=()=>[
+    LogoutFn.execute().then(res=>{if(res.signed){
+      setSign(false)
+    }})
+  ]
  
-</Button></span>) : (userPresent())    } 
+
+  const checkUser =() =>{ return sign ?      (userPresent()) :(<span className="mr-4 "> <Button color="purple" placeholder='Search' > Get Started
+ 
+    </Button></span>)    } 
 
 
   function userPresent() {
@@ -48,7 +47,7 @@ import { useResultContext } from '../context/SearchContextProvider'
     >
       <Dropdown.Header>
         <span className="block text-sm dark:bg-black dark:text-white">
-        {cookies.NM}
+        {Cookies.get('name')}
         </span>
         <span className="block truncate text-sm font-medium">
           name@flowbite.com
@@ -66,8 +65,7 @@ import { useResultContext } from '../context/SearchContextProvider'
       <Dropdown.Divider />
       <Dropdown.Item>
         <div onClick={() => {
-          setCookie("userId", "guest")
-          setCookie("name","anonymous")}} >Sign out</div>
+          handleLogout()}} >Sign out</div>
         
       </Dropdown.Item>
     </Dropdown></div>
@@ -107,7 +105,7 @@ import { useResultContext } from '../context/SearchContextProvider'
        <Link exact="true" to="/register">Register</Link> 
       </Navbar.Link>
       <Navbar.Link >
-      { cookies.userId === "guest"? <Link exact="true" to="/login">Login</Link>:<></> }
+      { Cookies.get('token') === undefined? <Link exact="true" to="/login">Login</Link>:<></> }
       </Navbar.Link>
       <Navbar.Link ><Link exact="true" to="/contact">
       Contact
