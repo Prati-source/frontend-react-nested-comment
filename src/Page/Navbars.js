@@ -31,9 +31,7 @@ import { logout } from '../services/user';
   ]
  
 
-  const checkUser =() =>{ return sign ?      (userPresent()) :(<span className="mr-4 "> <Button color="purple" placeholder='Search' > Get Started
  
-    </Button></span>)    } 
 
 
   function userPresent() {
@@ -71,6 +69,11 @@ import { logout } from '../services/user';
     </Dropdown></div>
     )
   }
+  function checkedUser(){
+  if( sign){  return userPresent() }
+    else { return (<span className="mr-4 "> <Button color="purple" placeholder='Search' > Get Started
+ 
+ </Button></span>)    }}
   
   return (
     <div  className={darkTheme?'dark': ''} ><Navbar
@@ -90,7 +93,7 @@ import { logout } from '../services/user';
     </Navbar.Brand>
     <div className="flex md:order-2">
      
-    { checkUser()}
+    {checkedUser() }
       
       <Navbar.Toggle />
     </div >
@@ -111,7 +114,7 @@ import { logout } from '../services/user';
       Contact
       </Link>
       </Navbar.Link>
-    </Navbar.Collapse>
+    
     
     <div id='toggle'>
     <ToggleSwitch
@@ -119,9 +122,9 @@ import { logout } from '../services/user';
     label={darkTheme? 'Dark 🌙' : 'Light 💡'}
     onChange={()=>{setDarkTheme(!darkTheme)}}
    
-  /></div>
-  <form className="flex flex-col gap-4" >
-  <div>
+  /></div></Navbar.Collapse>
+  <form className="flex flex-col gap-4 sm:visibility:collapse" >
+  <div className=''>
     
     <input
       

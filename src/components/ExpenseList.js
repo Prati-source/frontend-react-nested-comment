@@ -18,8 +18,8 @@ export function ExpenseList(){
 </div>
   if(Error) return <h1 className='error-msg'>{Error}</h1>
 
-  return <>
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+  return <div class=" flex flex-nowrap overflow-x-auto">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
           <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
             <tr>
               <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
@@ -86,5 +86,5 @@ export function ExpenseList(){
                   </tbody>
               
          )
-  })}</table></>
+  })}</table></div>
 }
