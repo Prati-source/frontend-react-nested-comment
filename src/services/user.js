@@ -10,10 +10,10 @@ export function register ({username, password, re_password}){
         )
 }
 
-export function login ({username, password}){
+export function login ({username, password,remember}){
     return requests('/login', {
         method:'POST',
-        data: {username, password}
+        data: {username, password,remember}
     })
 }
 

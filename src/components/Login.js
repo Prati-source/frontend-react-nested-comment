@@ -10,14 +10,14 @@ import Cookies from 'js-cookie';
 export default  function Login ({sign,setSign}) {
     const[username, setUsername] = useState()
     const[password, setPassword] = useState()
+    const[remember,setRemember] = useState(false)
     const LoginUserFn = useAsyncFn(login)
- 
  const handleOnSubmit = (e) =>{
     e.preventDefault();
     let pass=UseHash(password);
     setPassword(pass);
    
-    LoginUserFn.execute({username, password}).then(res =>{ 
+    LoginUserFn.execute({username, password,remember}).then(res =>{ 
         if(res.error) {
     
         alert(res.error)
@@ -140,11 +140,10 @@ return (
                         <input
                             type="checkbox"
                             className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                            id="exampleCheck2"
+                            id="exampleCheck2" checked={remember}   onChange={(e)=>{setRemember(e.target.checked)}}
                         />
                         <label className="form-check-label inline-block text-gray-800" 
-                            >Remember me</label
-                        >
+                            >Remember me</label>
                         </div>
                         <a href="#!" className="text-gray-800 dark:text-white">Forgot password?</a>
                     </div>
