@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link} from "react-router-dom"
-import { useAsyncFn } from "../hooks/useAsync";
-import { register } from "../services/user";
+import { useAsyncFn } from "../../hooks/useAsync";
+import { register } from "../../services/user";
 import { Button, Label , TextInput } from "flowbite-react";
-import UseHash from "../hooks/useHash";
+import UseHash from "../../hooks/useHash";
 
 
 

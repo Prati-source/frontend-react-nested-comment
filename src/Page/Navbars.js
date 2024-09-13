@@ -6,17 +6,14 @@ import { useResultContext } from '../context/SearchContextProvider'
 import Cookies from "js-cookie"
 import { useAsyncFn } from '../hooks/useAsync';
 import { logout } from '../services/user';
-
+import { useGeolocated } from "react-geolocated"
 
 
  export function Navbars({darkTheme, setDarkTheme,sign, setSign}) {
   const {searchTerm, setSearchTerm} = useResultContext();
   const [term,setTerm]= useState();
-
   const LogoutFn = useAsyncFn(logout)
-
-
-
+ 
  function searchStore(){
     let t = term
     setSearchTerm(t);
@@ -30,9 +27,12 @@ import { logout } from '../services/user';
     }})
   ]
  
-
- 
-
+  if(!!Cookies.get('token')){
+    setSign(true)
+  }
+  if(localStorage.getItem('theme') === "true"){
+    setDarkTheme(true)
+  }
 
   function userPresent() {
     return (<div >
@@ -51,15 +51,24 @@ import { logout } from '../services/user';
           name@flowbite.com
         </span>
       </Dropdown.Header>
-      <Dropdown.Item>
-        <Link exact="true"  to="/expense">View Expense</Link>
-      </Dropdown.Item>
-      <Dropdown.Item>
-      <Link exact="true" to="/postcreate">Create Post</Link>
-      </Dropdown.Item>
-      <Dropdown.Item>
-        <Link exact="true"  to="/addexpense">Add Expense</Link>
-      </Dropdown.Item>
+      <Link exact="true"  to="/dashboard"><Dropdown.Item>
+       Dashboard
+      </Dropdown.Item></Link>
+      <Link exact="true"  to="/expense"><Dropdown.Item>
+        View Expense
+      </Dropdown.Item></Link>
+      <Link exact="true" to="/postcreate"><Dropdown.Item>
+      Create Post
+      </Dropdown.Item></Link>
+      <Link exact="true"  to="/addexpense"><Dropdown.Item>
+       Add Expense
+      </Dropdown.Item></Link>
+      <Link exact="true"  to="/ownpost"><Dropdown.Item>
+       Your Posts
+      </Dropdown.Item></Link>
+      <Link exact="true"  to="/melting"><Dropdown.Item>
+       Add Melting
+      </Dropdown.Item></Link>
       <Dropdown.Divider />
       <Dropdown.Item>
         <div onClick={() => {
@@ -99,7 +108,7 @@ import { logout } from '../services/user';
     </div >
     <Navbar.Collapse>
       <Navbar.Link>
-        <Link exact='true' to='/home'>  Home</Link>
+        <Link exact='true' to='/'>  Home</Link>
       </Navbar.Link>
       <Navbar.Link >
       <Link exact="true" to="/posts">  Posts</Link>
@@ -120,11 +129,11 @@ import { logout } from '../services/user';
     <ToggleSwitch
     checked={darkTheme}
     label={darkTheme? 'Dark 🌙' : 'Light 💡'}
-    onChange={()=>{setDarkTheme(!darkTheme)}}
+    onChange={()=>{setDarkTheme(!darkTheme) ;localStorage.setItem('theme',!darkTheme)}}
    
   /></div></Navbar.Collapse>
-  <form className="flex flex-col gap-4 sm:visibility:collapse" >
-  <div className=''>
+  <form className="flex flex-col gap-4 " >
+ 
     
     <input
       
@@ -133,11 +142,10 @@ import { logout } from '../services/user';
       onClick={searchStore}
       onChange={(e)=>setTerm(e.target.value)}
       value={term}
-      className='dark:bg-slate-500 dark:placeholder:text-white dark:text-white' 
+      className='dark:bg-slate-500 dark:placeholder:text-white dark:text-white max-w-36 min-w-0' 
      />
      
       
-    </div>
     </form>
   </Navbar>
   </div>

@@ -1,12 +1,12 @@
 import { IconBtn } from "./IconBtn"
 import { FaEdit, FaHeart, FaRegHeart, FaReply, FaTrash } from "react-icons/fa"
-import { usePost } from "../context/PostContext"
+import { usePost } from "../../context/PostContext"
 import { CommentList } from "./CommentList"
 import { useState } from "react"
 import { CommentForm } from "./CommentForm"
-import { useAsyncFn } from "../hooks/useAsync"
-import { createComments, deleteComments, toggleCommentLike, updateComments } from "../services/comments"
-import  {useUser}  from "../hooks/useUser"
+import { useAsyncFn } from "../../hooks/useAsync"
+import { createComments, deleteComments, toggleCommentLike, updateComments } from "../../services/comments"
+import  {useUser}  from "../../hooks/useUser"
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
     dateStyle:"medium",
