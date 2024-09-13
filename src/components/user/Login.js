@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
-import { Link,Navigate} from "react-router-dom";
-import { login } from '../services/user';
-import { useAsyncFn } from '../hooks/useAsync';
-import UseHash from '../hooks/useHash';
+import { Link,Navigate,useNavigate} from "react-router-dom";
+import { login } from '../../services/user';
+import { useAsyncFn } from '../../hooks/useAsync';
+import UseHash from '../../hooks/useHash';
 import { useCookies} from 'react-cookie';
 import Cookies from 'js-cookie';
 
@@ -11,6 +11,7 @@ export default  function Login ({sign,setSign}) {
     const[username, setUsername] = useState()
     const[password, setPassword] = useState()
     const[remember,setRemember] = useState(false)
+    const history = useNavigate()
     const LoginUserFn = useAsyncFn(login)
  const handleOnSubmit = (e) =>{
     e.preventDefault();
@@ -24,15 +25,14 @@ export default  function Login ({sign,setSign}) {
         }
         if(res.signed){
             setSign(true)
+            history('/posts')
         }
-       
+        
       
  } )
   }
 
-if(Cookies.get('token') !== undefined){
-   return <Navigate to="/posts" replace={true} />
-}
+
 
 
 

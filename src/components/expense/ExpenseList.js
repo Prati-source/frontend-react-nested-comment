@@ -1,5 +1,5 @@
-import { useAsync } from "../hooks/useAsync"
-import {getexpense} from "../services/expense"
+import { useAsync } from "../../hooks/useAsync"
+import {getexpense} from "../../services/expense"
 
 export function ExpenseList(){
     const {Loading, Error, Value:exps} = useAsync(getexpense)

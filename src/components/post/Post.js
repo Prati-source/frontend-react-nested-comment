@@ -1,7 +1,7 @@
  
-import { usePost } from "../context/PostContext"
-import { useAsyncFn } from "../hooks/useAsync"
-import { createComments } from "../services/comments"
+import { usePost } from "../../context/PostContext"
+import { useAsyncFn } from "../../hooks/useAsync"
+import { createComments } from "../../services/comments"
 import {CommentForm} from "./CommentForm"
 import { CommentList } from "./CommentList"
 
