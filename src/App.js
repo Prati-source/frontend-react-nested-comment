@@ -28,7 +28,7 @@ function App() {
  const [sign,setSign] = useState(false)
  const AuthWrapper = () => {
   const location = useLocation();
-  const token = !!Cookies.get('token');
+  const token = !!localStorage.getItem('token');
 
   return token ? (
     <Outlet />
