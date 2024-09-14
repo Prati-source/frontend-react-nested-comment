@@ -25,6 +25,7 @@ export default  function Login ({sign,setSign}) {
         }
         if(res.signed){
             setSign(true)
+            localStorage.setItem('token',res.token)
             history('/posts')
         }
         

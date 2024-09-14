@@ -11,7 +11,8 @@ export function getPostUnique(post){
     return requests(`/posts/`+post.id)
 }
 
-export function createPost({postbody,title,token}){
+export function createPost({postbody,title}){
+    const token = localStorage.getItem('token')
     return requests(`/postcreate`,{
         method:"POST",
         data:{postbody,title,token}
@@ -23,7 +24,7 @@ export function ownPost(){
 }
 
 export function deletePost({id}){
-    const token = Cookies.get("token")
+    const token = localStorage.getItem('token')
     return  requests(`/posts/${id}`,{
         method:"DELETE",
         data:{token}
