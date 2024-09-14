@@ -27,7 +27,7 @@ import { useGeolocated } from "react-geolocated"
     }})
   ]
  
-  if(!!Cookies.get('token')){
+  if(!!localStorage.getItem('token')){
     setSign(true)
   }
   if(localStorage.getItem('theme') === "true"){

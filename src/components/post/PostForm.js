@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { useAsyncFn } from "../../hooks/useAsync"
 import { createPost } from "../../services/posts"
-import Cookies from 'js-cookie'
 export  function PostForm() {
     
     const [title, setTitle] = useState()
@@ -11,8 +10,7 @@ export  function PostForm() {
     
     function  handleSubmit (e){
         e.preventDefault();
-        let token = Cookies.get('token')
-        return createPostFn({title,postbody,token}).then(res=>{
+        return createPostFn({title,postbody}).then(res=>{
           if(res.error){
             
           }
