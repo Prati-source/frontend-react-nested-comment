@@ -16,7 +16,8 @@ export  function Item() {
         return:0,
         customer:'',
         remark:'',
-        name:''
+        name:'',
+        customerId:''
   
     })
     const {Loading, Error, execute:createItemFn} = useAsyncFn(postItem)
@@ -44,7 +45,6 @@ export  function Item() {
         [name]:value
          }));
          let  type=value
-         console.log(value)
         obtainclient({type}).then(res=>{
           if(res.err){
             alert("ERROR")
@@ -56,10 +56,10 @@ export  function Item() {
     }
     const  GetClient= ()=>{
       if(item.type ===  "Supplier"|| item.type === "Customer" ){
-      
+        
       return  <div className="mb-12 pb-2"> 
                <label for="customer" className="block mb-2 text-sm  font-medium text-gray-900 dark:text-white ">Client Name</label>
-                <select id="customer" name="customer" value={item.customer} onChange={(e)=>{setItem(prev=>({...prev,[e.target.name]:e.target.value}))}} className="bg-gray-50 border border-gray-300 absolute w-48 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select id="customer" name="customer" value={item.customer}  onChange={(e)=>{ setItem((prev)=>({...prev,[e.target.name]:e.target.value,"customerId":cus.find((obj)=>obj.name==e.target.value).id}))}} className="bg-gray-50 border border-gray-300 absolute w-48 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 {cus.map(cu=>{
                   return <option>{cu.name}</option> 
                 })}
@@ -68,18 +68,16 @@ export  function Item() {
       }
       return  null
     }
-  
-    function  handleSubmit (e){
+
+   const  handleSubmit =(e)=>{
         e.preventDefault();
-        console.log(item)
-        return createItemFn({item}).then(res=>{
+        let x= ""+item.gross+"/"+item.touch+"/"+item.pure
+         createItemFn({item}).then(res=>{
           if(res.error){
             return alert(res.error)
           }
           setAdd(true) 
         })
-        
-  
     }
     return <form class="space-y-4 dark:bg-gray-800 dark:text-gray-100 px-10" onSubmit={(e)=>{handleSubmit(e)}}>
              {add?<SuccessMessage />:<div className="invisible"></div>}
