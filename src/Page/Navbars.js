@@ -1,8 +1,6 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import {  Dropdown, Navbar, Button, ToggleSwitch } from 'flowbite-react';
-import {useCookies } from 'react-cookie';
-import { useResultContext } from '../context/SearchContextProvider'
 import Cookies from "js-cookie"
 import { useAsyncFn } from '../hooks/useAsync';
 import { logout } from '../services/user';
@@ -10,20 +8,16 @@ import { useGeolocated } from "react-geolocated"
 
 
  export function Navbars({darkTheme, setDarkTheme,sign, setSign}) {
-  const {searchTerm, setSearchTerm} = useResultContext();
-  const [term,setTerm]= useState();
+
+
   const LogoutFn = useAsyncFn(logout)
  
- function searchStore(){
-    let t = term
-    setSearchTerm(t);
-   
-    console.log(searchTerm)
-  
-  }
+ 
   const handleLogout=()=>[
     LogoutFn.execute().then(res=>{if(res.signed){
       setSign(false)
+      localStorage.removeItem('token')
+      localStorage.removeItem('name')
     }})
   ]
  
@@ -45,10 +39,7 @@ import { useGeolocated } from "react-geolocated"
     >
       <Dropdown.Header>
         <span className="block text-sm dark:bg-black dark:text-white">
-        {Cookies.get('name')}
-        </span>
-        <span className="block truncate text-sm font-medium">
-          name@flowbite.com
+        {localStorage.getItem('name')}
         </span>
       </Dropdown.Header>
       <Link exact="true"  to="/dashboard"><Dropdown.Item>
@@ -117,7 +108,7 @@ import { useGeolocated } from "react-geolocated"
        <Link exact="true" to="/register">Register</Link> 
       </Navbar.Link>
       <Navbar.Link >
-      { Cookies.get('token') === undefined? <Link exact="true" to="/login">Login</Link>:<></> }
+      { localStorage.getItem('token') === undefined? <Link exact="true" to="/login">Login</Link>:<></> }
       </Navbar.Link>
       <Navbar.Link ><Link exact="true" to="/contact">
       Contact
@@ -132,21 +123,6 @@ import { useGeolocated } from "react-geolocated"
     onChange={()=>{setDarkTheme(!darkTheme) ;localStorage.setItem('theme',!darkTheme)}}
    
   /></div></Navbar.Collapse>
-  <form className="flex flex-col gap-4 " >
- 
-    
-    <input
-      
-      type="text"
-      placeholder="search"
-      onClick={searchStore}
-      onChange={(e)=>setTerm(e.target.value)}
-      value={term}
-      className='dark:bg-slate-500 dark:placeholder:text-white dark:text-white max-w-36 min-w-0' 
-     />
-     
-      
-    </form>
   </Navbar>
   </div>
   )

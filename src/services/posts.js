@@ -1,5 +1,5 @@
 import { requests } from "./requests";
-import Cookies from "js-cookie"
+
 
 export function getPost(){
     

@@ -3,8 +3,7 @@ import { Link,Navigate,useNavigate} from "react-router-dom";
 import { login } from '../../services/user';
 import { useAsyncFn } from '../../hooks/useAsync';
 import UseHash from '../../hooks/useHash';
-import { useCookies} from 'react-cookie';
-import Cookies from 'js-cookie';
+
 
 
 export default  function Login ({sign,setSign}) {
@@ -26,6 +25,7 @@ export default  function Login ({sign,setSign}) {
         if(res.signed){
             setSign(true)
             localStorage.setItem('token',res.token)
+            localStorage.setItem('name',res.name)
             history('/posts')
         }
         

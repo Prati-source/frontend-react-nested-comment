@@ -6,7 +6,7 @@ import { useState } from "react"
 import { CommentForm } from "./CommentForm"
 import { useAsyncFn } from "../../hooks/useAsync"
 import { createComments, deleteComments, toggleCommentLike, updateComments } from "../../services/comments"
-import  {useUser}  from "../../hooks/useUser"
+
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
     dateStyle:"medium",
@@ -19,11 +19,12 @@ export function Comment({id,message, createdAt, user, likeCount, likedByMe}){
     const [isReplying, setIsReplying] = useState(false)
     const [isEditing, setIsEditing]  = useState(false)
     const createCommentFn = useAsyncFn(createComments)
-    const currentuser = useUser();
+    const currentuser = localStorage.getItem('name');
     function ReplyComment(message){
-        return createCommentFn.execute({ postId: post.id, message, parentId: id}).then(comment => {
+        return createCommentFn.execute({ postId: post.id, message, parentId: id}).then(res => {
+            if(res){console.log(res)}
             setIsReplying(false)
-            createLocalComment(comment)})
+            createLocalComment(res)})
     }
     const editCommentFn = useAsyncFn(updateComments)
 
@@ -70,7 +71,7 @@ export function Comment({id,message, createdAt, user, likeCount, likedByMe}){
                {likeCount}
             </IconBtn>
             <IconBtn isActive={isReplying}  Icon={FaReply} aria-label={isReplying? 'Cancel Reply':  "Reply"} onClick={() => setIsReplying(prev => !prev)}  />
-                { (currentuser.id === user.id) && (<>
+                { (currentuser === user.name) && (<>
                 <IconBtn Icon={FaEdit} color='green' isActive={isEditing} aria-label={isEditing? 'Cancel Edit': 'Edit'} onClick={() => setIsEditing(prev =>!prev)} />
                 <IconBtn Icon={FaTrash} color='danger' aria-label='Delete' onClick={ DeleteComment} disabled ={deleteLocalComment.Loading}/>
                 </>)}
