@@ -1,7 +1,8 @@
 import React,{useState} from "react";
 import { useGeolocated } from "react-geolocated";
-import { MapContainer,TileLayer,Marker,Popup,useMap } from "react-leaflet";
-import {Icon, marker,DistanceGrid} from "leaflet"
+import { MapContainer,TileLayer,Marker,useMap } from "react-leaflet";
+import {Icon, marker} from "leaflet"
+import { Navigation } from "lucide-react";
 
 
 function Exgeo  () {
@@ -55,16 +56,48 @@ function Exgeo  () {
 
     function Distanceview(){
         if(m>1000){
-            return <div className="mx-12 border-blue-500 text-slate-500 font-bold border-2 rounded-lg font-mono w-48 h-6 justify-center items-center"> Distance {m/1000} Km</div>
+            return <div className="bg-white dark:bg-gray-900 shadow-lg rounded-xl p-8 max-w-sm mx-auto transition-colors duration-300 ease-in-out">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Distance</h2>
+            </div>
+            <div className="flex items-center justify-center mb-6">
+              <Navigation className="w-12 h-12 text-blue-600 dark:text-blue-400" />
+            </div>
+            <div className="text-center">
+              <p className="text-6xl font-extrabold mb-2 text-gray-800 dark:text-white">{m/1000}</p>
+              <p className="text-xl uppercase tracking-wide text-gray-600 dark:text-gray-400">KM</p>
+            </div>
+            <div className="mt-6 bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Current distance traveled
+              </p>
+            </div>
+          </div>
         }
-        return <div className="mx-12 border-blue-500 text-slate-500 rounded-lg font-bold border-2  font-mono w-48 h-6 justify-center items-center"> Distance {m} Meters</div>
+        return <div className="bg-white dark:bg-gray-900 shadow-lg rounded-xl p-8 max-w-sm mx-auto transition-colors duration-300 ease-in-out">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Distance</h2>
+        </div>
+        <div className="flex items-center justify-center mb-6">
+          <Navigation className="w-12 h-12 text-blue-600 dark:text-blue-400" />
+        </div>
+        <div className="text-center">
+          <p className="text-6xl font-extrabold mb-2 text-gray-800 dark:text-white">{m}</p>
+          <p className="text-xl uppercase tracking-wide text-gray-600 dark:text-gray-400">Meters</p>
+        </div>
+        <div className="mt-6 bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
+          <p className="text-sm text-gray-600 dark:text-gray-300">
+            Current distance traveled
+          </p>
+        </div>
+      </div>
     }
 
     function    mapView(){
         const lat = coords.latitude;
         const long = coords.longitude;
         let distance = 0
-        return <div className="w-full p-5 h-1/2 flex flex-row sm:flex-col justify-center items-center">
+        return <div className="w-full p-5 h-1/2 flex lg:flex-row md:flex-col flex-col  justify-center items-center">
                
                 <MapContainer center={[lat,long]} zoom={13} >
                     <TileLayer

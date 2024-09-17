@@ -1,39 +1,50 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LayoutDashboard, UserPlus, Package, List } from 'lucide-react';
+import { Dropdown } from 'flowbite-react';
 
 const UserDashboard = () => {
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-md dark:bg-slate-800   ">
-        <nav className="p-5 space-y-2">
-          <Link to="/dashboard" className="block ">
-            <button className="w-full flex items-center dark:hover:text-slate-500 dark:text-white justify-start px-4 py-2 text-gray-700 hover:bg-gray-200 rounded transition-colors">
-              <LayoutDashboard className="mr-2 h-4 w-4" />
-              Dashboard
-            </button>
-          </Link>
-          <Link to="/client/add" className="block">
-            <button className="w-full flex items-center dark:hover:text-slate-500 dark:text-white justify-start px-4 py-2 text-gray-700 hover:bg-gray-200 rounded transition-colors">
-              <UserPlus className="mr-2 h-4 w-4" />
-              Add Client
-            </button>
-          </Link>
-          <Link to="/client/item" className="block">
-            <button className="w-full flex items-center dark:hover:text-slate-500 dark:text-white justify-start px-4 py-2 text-gray-700 hover:bg-gray-200 rounded transition-colors">
-              <Package className="mr-2 h-4 w-4" />
-              Add Item
-            </button>
-          </Link>
-          <Link to="/view-items" className="block">
-            <button className="w-full flex items-center dark:hover:text-slate-500 dark:text-white justify-start px-4 py-2 text-gray-700 hover:bg-gray-200 rounded transition-colors">
-              <List className="mr-2 h-4 w-4" />
-              View Items
-            </button>
-          </Link>
-        </nav>
+      <aside className="md:w-64 bg-white shadow-md dark:bg-slate-800   ">
+        <div >
+      <Dropdown
+      arrowIcon={false}
+      inline={true}
+      label={<div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+              <svg class="absolute w-10 h-10 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M12,8c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S13.1,8,12,8z" />
+  <path d="M12,14c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S13.1,14,12,14z" />
+  <path d="M12,20c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S13.1,20,12,20z" /></svg>
+              </div>}
+    >
+      <Dropdown.Header>
+      </Dropdown.Header>
+      <Link exact="true"  to="/dashboard"><Dropdown.Item>
+       Dashboard
+      </Dropdown.Item></Link>
+      <Link exact="true"  to="/client/add"><Dropdown.Item>
+        Add Client
+      </Dropdown.Item></Link>
+      <Link exact="true" to="/client/item/create"><Dropdown.Item>
+        Add Item
+      </Dropdown.Item></Link>
+      <Link exact="true"  to="/client/collection/create"><Dropdown.Item>
+       Add Collection
+      </Dropdown.Item></Link>
+      <Link exact="true"  to="/client/get"><Dropdown.Item>
+        View Client
+      </Dropdown.Item></Link>
+      <Link exact="true"  to="/client/item/get"><Dropdown.Item>
+       View Items
+      </Dropdown.Item></Link>
+      <Link exact="true"  to="/client/collections/get"><Dropdown.Item>
+       View Collections
+      </Dropdown.Item></Link>
+      <Dropdown.Divider />
+    </Dropdown></div>
       </aside>
+      
 
       {/* Main Content */}
       <main className="flex-1 p-10 overflow-auto dark:bg-slate-700 dark:text-white">

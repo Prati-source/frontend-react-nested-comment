@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { SearchContextProvider } from './context/SearchContextProvider';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <div className='pt-1 bg-Sky w-full     '>
+    <div className=' bg-Sky bg-cover w-full  pt-2 pb-2  '>
         <SearchContextProvider>
             <BrowserRouter>
                 <App />
