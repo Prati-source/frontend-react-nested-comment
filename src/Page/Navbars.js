@@ -108,7 +108,7 @@ import { useGeolocated } from "react-geolocated"
        <Link exact="true" to="/register">Register</Link> 
       </Navbar.Link>
       <Navbar.Link >
-      { localStorage.getItem('token') === undefined? <Link exact="true" to="/login">Login</Link>:<></> }
+      { localStorage.getItem('token') == undefined? <Link exact="true" to="/login">Login</Link>:<></> }
       </Navbar.Link>
       <Navbar.Link ><Link exact="true" to="/contact">
       Contact
