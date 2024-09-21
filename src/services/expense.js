@@ -4,7 +4,7 @@ const token = localStorage.getItem('token')
 
 export function getexpense(){
     
-    return  requests(`/expense`,{method:"GET",data:{token}})
+    return  requests(`/expense/get`,{method:"POST",data:{token}})
 }
 
 export function addExpense({category,description,client,payMeth,status,location,amount,taxAmt}){

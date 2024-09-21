@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import {  Dropdown, Navbar, Button, ToggleSwitch } from 'flowbite-react';
-import Cookies from "js-cookie"
 import { useAsyncFn } from '../hooks/useAsync';
 import { logout } from '../services/user';
 import { useGeolocated } from "react-geolocated"
