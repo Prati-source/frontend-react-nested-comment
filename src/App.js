@@ -66,7 +66,7 @@ function App() {
             <Route  path="/melting" element={<Melting />} />
             <Route  path='/ownpost'  element={<OwnPost  />} />
             <Route  path='/client/add' element={<Client  />} />
-            <Route  path='/client/item' element={<Item  />} />
+            <Route  path='/client/item/create' element={<Item  />} />
             <Route  path='/client/item/get' element={<GetItem />} />
             <Route  path='/client/get'   element={<ClientList />} />
             <Route  path='/client/collection/create'  element={<CollectionForm  />} />

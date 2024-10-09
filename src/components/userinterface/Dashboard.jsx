@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LayoutDashboard, UserPlus, Package, List } from 'lucide-react';
+import { LayoutDashboard, UserPlus, Package, List,Menu } from 'lucide-react';
 import { Dropdown } from 'flowbite-react';
 
 const UserDashboard = () => {
@@ -12,10 +12,8 @@ const UserDashboard = () => {
       <Dropdown
       arrowIcon={false}
       inline={true}
-      label={<div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-              <svg class="absolute w-10 h-10 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M12,8c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S13.1,8,12,8z" />
-  <path d="M12,14c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S13.1,14,12,14z" />
-  <path d="M12,20c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S13.1,20,12,20z" /></svg>
+      label={<div class="relative w-8 h-8 overflow-hidden bg-gray-100 rounded-lg dark:bg-gray-600">
+      <Menu size={24} />
               </div>}
     >
       <Dropdown.Header>
