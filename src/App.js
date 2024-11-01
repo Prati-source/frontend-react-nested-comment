@@ -1,4 +1,4 @@
-import { Routes, Route,useLocation,Navigate,Outlet } from 'react-router-dom';
+import { Routes, Route,useLocation,Navigate,Outlet,Link } from 'react-router-dom';
 import { PostList }  from './components/post/PostLists';
 import { Post } from './components/post/Post';
 import { PostProvider } from './context/PostContext';
@@ -7,7 +7,6 @@ import Login from './components/user/Login';
 import { Navbars } from './Page/Navbars';
 import {useState} from 'react'
 import { SearchResult } from './components/SearchResult'
-import { Footers } from './Page/Footers';
 import { Contact } from './components/Contact';
 import { PostForm } from './components/post/PostForm';
 import { Expense } from './components/expense/Expense';
@@ -29,9 +28,10 @@ function App() {
 
  const [darkTheme, setDarkTheme] = useState(false)
  const [sign,setSign] = useState(false)
+ const token = !!localStorage.getItem('token');
+ const [v,setV]= useState(false)
  const AuthWrapper = () => {
   const location = useLocation();
-  const token = !!localStorage.getItem('token');
 
   return token ? (
     <Outlet />
@@ -41,6 +41,14 @@ function App() {
 };
 
 
+const Sidebar = ()=>{
+setV(!v) 
+}
+
+    {/* Sidebar */}
+
+
+
 
  
   return (
@@ -48,7 +56,51 @@ function App() {
    
     <div className='container bg-white -mx-5 rounded dark:bg-gray-800 ' >
       <Navbars darkTheme={darkTheme} setDarkTheme={setDarkTheme} setSign={setSign} sign={sign} />
-      <div  className='' ><Routes >    
+    <div className='flex'>
+      <aside  class="relative top-0 left-0 z-40  h-screen p-0  bg-slate-700 transition ease-in-out0 "  onClick={Sidebar} className={v&&token?"w-64":"w-8"} >
+    <div className='absolute top-1/2 bottom-1/2  w-8 h-8 overflow-hidden bg-slate-200 rounded-3xl'>
+      <svg className=' mx-2 mt-1.5' xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0 L5 0 L15 10 L5 20 L0 20 L10 10 Z" className='w-4 h-4'/>
+      </svg>
+    </div>
+ <div class="h-full px-0 mx-4 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+   
+    <ul class="space-y-2 font-medium ">
+       <li>
+         <Link exact="true" to="/client/add" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+             <span class="flex-1 whitespace-nowrap">Add Client</span>
+         </Link>
+       </li>
+       <li>
+         <Link exact="true" to="/client/item/create" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+             <span class="flex-1 whitespace-nowrap">Add Item</span>
+         </Link>
+       </li>
+       <li>
+         <Link exact="true" to="/client/item/create" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+             <span class="flex-1 whitespace-nowrap">Add Collection</span>
+         </Link>
+       </li>
+       <li>
+         <Link exact="true" to="/client/get" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+             <span class="flex-1 whitespace-nowrap">View Client</span>
+         </Link>
+       </li>
+       <li>
+         <Link exact="true" to="/client/item/get" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+             <span class="flex-1 whitespace-nowrap">View Items</span>
+         </Link>
+       </li>
+       <li>
+         <Link exact="true" to="/client/collection/get" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+             <span class="flex-1 whitespace-nowrap">View Collection</span>
+         </Link>
+       </li>
+    </ul>
+ </div>
+</aside>
+<div  className='z-0 w-full' >
+        <Routes >    
         <Route  path='/posts' element={<PostList />} />
         <Route  path='/home' element={<Home />} />
         <Route  path='/posts/:id' element={<PostProvider><Post /></PostProvider>} />
@@ -57,6 +109,7 @@ function App() {
         <Route  path='/' element={<Exgeo />} />
         <Route  path='/contact' element={<Contact />} />
           <Route element={<AuthWrapper />}>
+         
             <Route  path='/dashboard' element={<UserDashboard />} />
             <Route  path='/postcreate' element={<PostForm />} />
             <Route  path='/search' element={<SearchResult />} />
@@ -73,8 +126,7 @@ function App() {
             <Route  path='/client/collection/get'  element={<CollectionList />} />
           </Route>
         <Route  path="*" element={<Navigate to="/" replace />} />
-      </Routes></div>
-      <Footers />
+      </Routes></div></div>
     </div> </div>
   )
     
