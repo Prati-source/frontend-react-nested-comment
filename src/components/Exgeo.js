@@ -97,7 +97,7 @@ function Exgeo  () {
         const lat = coords.latitude;
         const long = coords.longitude;
         let distance = 0
-        return <div className="w-full p-5 h-1/2 flex lg:flex-row md:flex-col flex-col  justify-center items-center">
+        return <div className="w-full p-5 h-full mt-40 flex lg:flex-row md:flex-col flex-col  justify-center items-center">
                
                 <MapContainer center={[lat,long]} zoom={13} >
                     <TileLayer
