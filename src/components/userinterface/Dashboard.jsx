@@ -1,48 +1,59 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
-import { LayoutDashboard, UserPlus, Package, List,Menu } from 'lucide-react';
-import { Dropdown } from 'flowbite-react';
 
 const UserDashboard = () => {
+  const [v,setV]= useState(false)
+
+  const Sidebar = ()=>{
+  setV(!v) 
+ }
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
-      <aside className="md:w-64 bg-white shadow-md dark:bg-slate-800   ">
-        <div >
-      <Dropdown
-      arrowIcon={false}
-      inline={true}
-      label={<div class="relative w-8 h-8 overflow-hidden bg-gray-100 rounded-lg dark:bg-gray-600">
-      <Menu size={24} />
-              </div>}
-    >
-      <Dropdown.Header>
-      </Dropdown.Header>
-      <Link exact="true"  to="/dashboard"><Dropdown.Item>
-       Dashboard
-      </Dropdown.Item></Link>
-      <Link exact="true"  to="/client/add"><Dropdown.Item>
-        Add Client
-      </Dropdown.Item></Link>
-      <Link exact="true" to="/client/item/create"><Dropdown.Item>
-        Add Item
-      </Dropdown.Item></Link>
-      <Link exact="true"  to="/client/collection/create"><Dropdown.Item>
-       Add Collection
-      </Dropdown.Item></Link>
-      <Link exact="true"  to="/client/get"><Dropdown.Item>
-        View Client
-      </Dropdown.Item></Link>
-      <Link exact="true"  to="/client/item/get"><Dropdown.Item>
-       View Items
-      </Dropdown.Item></Link>
-      <Link exact="true"  to="/client/collections/get"><Dropdown.Item>
-       View Collections
-      </Dropdown.Item></Link>
-      <Dropdown.Divider />
-    </Dropdown></div>
-      </aside>
-      
+
+
+<aside  class="relative top-0 left-0 z-40  h-screen p-0  bg-slate-700 "  >
+      <div className='absolute top-1/2 bottom-1/2 -right-2 w-8 h-8 overflow-visible bg-slate-200 rounded-3xl' onClick={Sidebar}>
+        <svg className=' mx-2 mt-1.5' xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0 L5 0 L15 10 L5 20 L0 20 L10 10 Z" className='w-4 h-4'/>
+        </svg>
+      </div>
+   <div class="h-full px-0 mx-2 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+     
+      <ul class="space-y-2 font-medium " className={v?"w-64":"w-2"}>
+         <li>
+           <Link exact="true" to="/client/add" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span class="flex-1 whitespace-nowrap">Add Client</span>
+           </Link>
+         </li>
+         <li>
+           <Link exact="true" to="/client/item/create" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span class="flex-1 whitespace-nowrap">Add Item</span>
+           </Link>
+         </li>
+         <li>
+           <Link exact="true" to="/client/item/create" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span class="flex-1 whitespace-nowrap">Add Collection</span>
+           </Link>
+         </li>
+         <li>
+           <Link exact="true" to="/client/get" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span class="flex-1 whitespace-nowrap">View Client</span>
+           </Link>
+         </li>
+         <li>
+           <Link exact="true" to="/client/item/get" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span class="flex-1 whitespace-nowrap">View Items</span>
+           </Link>
+         </li>
+         <li>
+           <Link exact="true" to="/client/collection/get" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span class="flex-1 whitespace-nowrap">View Collection</span>
+           </Link>
+         </li>
+      </ul>
+   </div>
+</aside>
 
       {/* Main Content */}
       <main className="flex-1 p-10 overflow-auto dark:bg-slate-700 dark:text-white">
