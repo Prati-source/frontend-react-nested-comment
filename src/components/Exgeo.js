@@ -56,7 +56,7 @@ function Exgeo  () {
 
     function Distanceview(){
         if(m>1000){
-            return <div className="bg-white dark:bg-gray-900 shadow-lg rounded-xl p-8 max-w-sm mx-auto transition-colors duration-300 ease-in-out">
+            return <div className="bg-white mt-5 dark:bg-gray-900 shadow-lg rounded-xl p-8 max-w-sm mx-auto transition-colors duration-300 ease-in-out">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Distance</h2>
             </div>
@@ -74,7 +74,7 @@ function Exgeo  () {
             </div>
           </div>
         }
-        return <div className="bg-white dark:bg-gray-900 shadow-lg rounded-xl p-8 max-w-sm mx-auto transition-colors duration-300 ease-in-out">
+        return <div className="bg-white mt-5 dark:bg-gray-900 shadow-lg rounded-xl p-8 max-w-sm mx-auto transition-colors duration-300 ease-in-out">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Distance</h2>
         </div>
@@ -97,9 +97,9 @@ function Exgeo  () {
         const lat = coords.latitude;
         const long = coords.longitude;
         let distance = 0
-        return <div className="w-full p-5 h-full mt-40 flex lg:flex-row md:flex-col flex-col  justify-center items-center">
+        return <div className="md:w-full flex-shrink p-3 md:h-full mt-10 flex lg:flex-row md:flex-col flex-col  justify-center items-center">
                
-                <MapContainer center={[lat,long]} zoom={13} >
+                <MapContainer center={[lat,long]} zoom={13} className="w-12" >
                     <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
